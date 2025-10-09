@@ -1,0 +1,3 @@
+[submodule ".Docs"]
+	path = .Docs
+	url = https://github.com/nelsonlmdcosta/42-Porto-CommonCore-Docs.git
