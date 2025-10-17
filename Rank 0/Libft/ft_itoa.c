@@ -6,17 +6,15 @@
 /*   By: nluis-mo <nluis-mo@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 11:13:55 by nluis-mo          #+#    #+#             */
-/*   Updated: 2025/10/10 20:20:25 by nluis-mo         ###   ########.fr       */
+/*   Updated: 2025/10/17 16:49:00 by nluis-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <malloc.h>
-
-void	*ft_memset(void *s, int c, size_t n);
+#include "libft.h"
 
 /*
- * Creates a buffer for 20 digits for the biggest possible digit of 20 characters
- * 		on 64 bit systems
+ * 	Creates a buffer for 11 digits for the biggest possible digit on 64 bit
+ * 		systems
  */
 char	*ft_itoa(int i)
 {
@@ -25,8 +23,8 @@ char	*ft_itoa(int i)
 	char	*temp;
 
 	valuetoconvert = 0;
-	output = malloc(sizeof (char) * 20);
-	ft_memset(output, 0, 20);
+	output = malloc(sizeof (char) * 11);
+	ft_memset(output, 0, 11);
 	temp = output;
 	if (i == 0)
 	{
@@ -43,6 +41,5 @@ char	*ft_itoa(int i)
 		*temp++ = '0' + valuetoconvert % 10;
 		valuetoconvert /= 10;
 	}
-	*temp = '\0';
 	return (output);
 }

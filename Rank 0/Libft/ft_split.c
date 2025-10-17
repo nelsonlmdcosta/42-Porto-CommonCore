@@ -6,7 +6,7 @@
 /*   By: nluis-mo <nluis-mo@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 11:13:44 by nluis-mo          #+#    #+#             */
-/*   Updated: 2025/10/15 22:05:42 by nluis-mo         ###   ########.fr       */
+/*   Updated: 2025/10/17 16:55:47 by nluis-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ char	**ft_split(char const *s, char c)
 	if (!extract_words(output, s, c))
 	{
 		free_all(output);
+		return (NULL);
 	}
 	return (output);
 }

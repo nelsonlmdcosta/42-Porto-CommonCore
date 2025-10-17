@@ -6,17 +6,18 @@
 /*   By: nluis-mo <nluis-mo@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 11:09:33 by nluis-mo          #+#    #+#             */
-/*   Updated: 2025/10/15 21:17:59 by nluis-mo         ###   ########.fr       */
+/*   Updated: 2025/10/17 16:59:06 by nluis-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "libft.h"
 
 /*
- * Finds the first character in a string and returns that pointer.
+ *	Finds the first character in a string and returns that pointer.
+ *	Can technically find the null terminator char too so that's addded as a
+ *		special case
  *
- * If not found returns nullptr
- * https://cplusplus.com/reference/cstring/strchr/
+ * 	https://cplusplus.com/reference/cstring/strchr/
  */
 const char	*ft_strchr(const char *str, int character)
 {
@@ -26,5 +27,7 @@ const char	*ft_strchr(const char *str, int character)
 			return (str);
 		++str;
 	}
+	if (*str == (char)character)
+		return (str);
 	return (NULL);
 }

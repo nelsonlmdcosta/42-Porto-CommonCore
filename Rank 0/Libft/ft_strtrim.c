@@ -6,14 +6,11 @@
 /*   By: nluis-mo <nluis-mo@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 11:13:35 by nluis-mo          #+#    #+#             */
-/*   Updated: 2025/10/12 20:33:13 by nluis-mo         ###   ########.fr       */
+/*   Updated: 2025/10/17 17:28:31 by nluis-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include <stdlib.h>
-
-size_t	ft_strlen(const char *s);
+#include "libft.h"
 
 static int	in_set(char c, const char *set)
 {

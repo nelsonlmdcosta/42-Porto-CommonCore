@@ -6,11 +6,11 @@
 /*   By: nluis-mo <nluis-mo@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 11:09:33 by nluis-mo          #+#    #+#             */
-/*   Updated: 2025/10/12 19:47:39 by nluis-mo         ###   ########.fr       */
+/*   Updated: 2025/10/17 17:28:11 by nluis-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "libft.h"
 
 /*
  * Finds the last occurence of a character in a string and returns that pointer.
@@ -29,5 +29,7 @@ const char	*ft_strrchr(const char *str, int character)
 			lastknownoccurence = str;
 		++str;
 	}
+	if (character == '\0')
+		return (str);
 	return (lastknownoccurence);
 }

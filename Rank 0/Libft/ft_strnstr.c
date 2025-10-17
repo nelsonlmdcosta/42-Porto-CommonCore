@@ -6,7 +6,7 @@
 /*   By: nluis-mo <nluis-mo@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 11:10:42 by nluis-mo          #+#    #+#             */
-/*   Updated: 2025/10/15 22:24:46 by nluis-mo         ###   ########.fr       */
+/*   Updated: 2025/10/17 17:26:56 by nluis-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	size_t	bigcounter;
 	size_t	littlecounter;
 
-	if (little == NULL)
+	if (little[0] == '\0')
 		return ((char *)big);
 	bigcounter = 0;
 	while (big[bigcounter] && bigcounter < len)

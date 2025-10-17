@@ -6,7 +6,7 @@
 /*   By: nluis-mo <nluis-mo@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 11:15:22 by nluis-mo          #+#    #+#             */
-/*   Updated: 2025/10/15 22:29:18 by nluis-mo         ###   ########.fr       */
+/*   Updated: 2025/10/17 17:05:17 by nluis-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int				ft_toupper(int c);
 int				ft_atoi(const char *s);
 char			*ft_itoa(int i);
 size_t			ft_strlen(const char *s);
-unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size);
+size_t			ft_strlcpy(char *dest, const char *src, size_t size);
 unsigned int	ft_strlcat(char *dst, char *src, unsigned int size);
 const char		*ft_strchr(const char *str, int character);
 const char		*ft_strrchr(const char *str, int character);
