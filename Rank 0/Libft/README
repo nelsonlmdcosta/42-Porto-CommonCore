@@ -1,0 +1,4 @@
+gcc test_libft_characters.c -L. -lc libft.a
+./a.out
+
+Run tests with https://github.com/WaRtr0/francinette-image

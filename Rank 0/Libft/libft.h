@@ -6,7 +6,7 @@
 /*   By: nluis-mo <nluis-mo@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 11:15:22 by nluis-mo          #+#    #+#             */
-/*   Updated: 2025/10/17 17:05:17 by nluis-mo         ###   ########.fr       */
+/*   Updated: 2025/10/17 20:07:10 by nluis-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdint.h>
 
 /* ---------------- Memory Management ---------------- */
 void			ft_bzero(void *s, size_t n);
