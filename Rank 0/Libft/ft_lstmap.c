@@ -6,7 +6,7 @@
 /*   By: nluis-mo <nluis-mo@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 11:18:33 by nluis-mo          #+#    #+#             */
-/*   Updated: 2025/10/15 23:27:49 by nluis-mo         ###   ########.fr       */
+/*   Updated: 2025/10/17 17:48:32 by nluis-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*new_node;
 	void	*new_content;
 
+	if (f == NULL)
+		return (NULL);
 	new_list = NULL;
 	while (lst)
 	{

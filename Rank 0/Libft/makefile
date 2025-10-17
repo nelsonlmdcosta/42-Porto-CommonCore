@@ -1,36 +1,44 @@
-NAME = libft.a
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+# Basics Setup
+NAME    = libft.a
+CC      = cc
+CFLAGS  = -Wall -Wextra -Werror
 
-# Mandatory source files
-SRC = $(wildcard *.c)
-OBJ = $(SRC:.c=.o)
+# Find All Our Files And Place Them In Buckets
+ALL_SRC = $(wildcard ft_*.c)
+SRC     = $(filter-out ft_lst%.c, $(ALL_SRC))
+BONUS   = $(filter ft_lst%.c, $(ALL_SRC))
 
-# Optional: list files for bonus (assuming named ft_lst*.c)
-BONUS_SRC = $(wildcard ft_lst*.c)
-BONUS_OBJ = $(BONUS_SRC:.c=.o)
+# Rules To Output To
+OBJ     = $(SRC:.c=.o)
+BONUS_OBJ = $(BONUS:.c=.o)
 
+# Just Do It All!
 all: $(NAME)
 
-# Build library
+# Archives the mandatory objects only
 $(NAME): $(OBJ)
 	ar rcs $(NAME) $(OBJ)
 
-# Compile individual object files
+# Archives the bonues objects only
+bonus: $(OBJ) $(BONUS_OBJ)
+	ar rcs $(NAME) $(OBJ) $(BONUS_OBJ)
+
+# Compiles into intermediate objects the c filess
+# $< expands the file name, aka my main.c
+# $@ expands the file name, aka my main.o as an example
 %.o: %.c libft.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Clean objects
+# Removes All Objects Files
 clean:
 	rm -f $(OBJ) $(BONUS_OBJ)
 
-# Remove objects and library
+# Cleans everything out
 fclean: clean
 	rm -f $(NAME)
 
-# Rebuild everything
+# Rebuild
 re: fclean all
 
-# Bonus target: compile bonus list functions into library
-bonus: $(BONUS_OBJ)
-	ar rcs $(NAME) $(OBJ) $(BONUS_OBJ)
+# We use .PHONY for targets so they dont correspond to files.
+.PHONY: all bonus clean fclean re
