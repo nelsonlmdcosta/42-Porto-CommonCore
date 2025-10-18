@@ -6,7 +6,7 @@
 /*   By: nluis-mo <nluis-mo@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 19:20:03 by nluis-mo          #+#    #+#             */
-/*   Updated: 2025/10/15 22:16:23 by nluis-mo         ###   ########.fr       */
+/*   Updated: 2025/10/18 19:15:01 by nluis-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ static void RunMemmoveTest(void)
 	// overlapping move: move first 5 chars to index 3
 	ft_memmove(buf + 3, buf, 5);
 	printf("ft_memmove overlapping -> buf: \"%s\"\n", buf);
-	char expected[] = "1231234560";
+	char expected[] = "1231234590";
 	assert(memcmp(buf, expected, 10) == 0);
 	printf("\n");
 }
