@@ -6,7 +6,7 @@
 /*   By: nluis-mo <nluis-mo@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 19:20:33 by nluis-mo          #+#    #+#             */
-/*   Updated: 2025/10/15 23:35:14 by nluis-mo         ###   ########.fr       */
+/*   Updated: 2025/10/18 13:44:20 by nluis-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void RunLstNewTest(void)
 	assert(node != NULL);
 	assert(strcmp((char*)node->content, "hello") == 0);
 	assert(node->next == NULL);
-	printf("ft_lstnew(\"hello\") -> node content: %s | next: %p\n", (char*)node->content, node->next);
+	printf("ft_lstnew(\"hello\") -> node content: %s | next: %p\n", (char*)node->content, (void*)node->next);
 	free(node);
 	printf("\n");
 }
