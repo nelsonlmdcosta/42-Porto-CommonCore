@@ -6,7 +6,7 @@ set(CMAKE_C_STANDARD 11)
 # ---------------------------------
 # Compiler flags
 # ---------------------------------
-add_compile_options(-Wall -Wextra -Werror)
+add_compile_options(-Wall -Wextra -Werror -Wpedantic)
 
 # ---------------------------------
 # Core library sources
