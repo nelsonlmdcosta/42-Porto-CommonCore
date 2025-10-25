@@ -31,7 +31,7 @@ find_program(NORMINETTE_EXECUTABLE norminette)
 
 if(NORMINETTE_EXECUTABLE)
     file(GLOB FT_FILES
-            "${CMAKE_SOURCE_DIR}/ft_*.c"
+            "${CMAKE_SOURCE_DIR}/get_*.c"
             "${CMAKE_SOURCE_DIR}/*.h"
     )
     if(FT_FILES)
