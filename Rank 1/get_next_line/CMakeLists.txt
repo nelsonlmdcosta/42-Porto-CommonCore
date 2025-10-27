@@ -9,23 +9,29 @@ set(CMAKE_C_STANDARD 11)
 add_compile_options(-Wall -Wextra -Werror -Wpedantic)
 
 # ---------------------------------
-# Core library sources
+# Mandatory library sources
 # ---------------------------------
-file(GLOB SRC_FILES
-        "${CMAKE_SOURCE_DIR}/*.c"
+set(MANDATORY_SOURCES
+        get_next_line.c
+        get_next_line_utils.c
 )
 
-# Exclude all test_*.c files from the library
-list(FILTER SRC_FILES EXCLUDE REGEX ".*/test_.*\\.c$")
-
-# Create the library (static by default)
-add_library(libft ${SRC_FILES})
-
-# Optional: set include directories (if you have headers in root)
-target_include_directories(libft PUBLIC ${CMAKE_SOURCE_DIR})
+add_library(gnl ${MANDATORY_SOURCES})
+target_include_directories(gnl PUBLIC ${CMAKE_SOURCE_DIR})
 
 # ---------------------------------
-# Norminette check
+# Bonus library sources
+# ---------------------------------
+set(BONUS_SOURCES
+        get_next_line_bonus.c
+        get_next_line_utils_bonus.c
+)
+
+add_library(gnl_bonus ${BONUS_SOURCES})
+target_include_directories(gnl_bonus PUBLIC ${CMAKE_SOURCE_DIR})
+
+# ---------------------------------
+# Norminette check (optional)
 # ---------------------------------
 find_program(NORMINETTE_EXECUTABLE norminette)
 
@@ -35,7 +41,7 @@ if(NORMINETTE_EXECUTABLE)
             "${CMAKE_SOURCE_DIR}/*.h"
     )
     if(FT_FILES)
-        add_custom_command(TARGET libft PRE_BUILD
+        add_custom_command(TARGET gnl PRE_BUILD
                 COMMAND ${NORMINETTE_EXECUTABLE} -R CheckForbiddenSourceHeader -R CheckDefine ${FT_FILES}
                 WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
                 COMMENT "Running Norminette on project files..."
@@ -44,15 +50,15 @@ if(NORMINETTE_EXECUTABLE)
 endif()
 
 # ---------------------------------
-# Create separate executables for each test_*.c file
+# Mandatory executable
 # ---------------------------------
-file(GLOB TEST_FILES
-        "${CMAKE_SOURCE_DIR}/test_*.c"
-)
+add_executable(test_get_next_line test_get_next_line.c)
+target_link_libraries(test_get_next_line PRIVATE gnl)
+target_include_directories(test_get_next_line PRIVATE ${CMAKE_SOURCE_DIR})
 
-foreach(TEST_FILE ${TEST_FILES})
-    get_filename_component(TEST_NAME ${TEST_FILE} NAME_WE)
-    add_executable(${TEST_NAME} ${TEST_FILE})
-    target_link_libraries(${TEST_NAME} PRIVATE libft)
-    target_include_directories(${TEST_NAME} PRIVATE ${CMAKE_SOURCE_DIR})
-endforeach()
+# ---------------------------------
+# Bonus executable
+# ---------------------------------
+add_executable(test_get_next_line_bonus test_get_next_line_bonus.c)
+target_link_libraries(test_get_next_line_bonus PRIVATE gnl_bonus)
+target_include_directories(test_get_next_line_bonus PRIVATE ${CMAKE_SOURCE_DIR})

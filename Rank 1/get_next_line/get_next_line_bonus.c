@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nluis-mo <nluis-mo@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/20 20:35:13 by nluis-mo          #+#    #+#             */
-/*   Updated: 2025/10/27 16:32:38 by nluis-mo         ###   ########.fr       */
+/*   Created: 2025/10/27 12:29:38 by nluis-mo          #+#    #+#             */
+/*   Updated: 2025/10/27 16:37:09 by nluis-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 /*
  *	Reallocates a new string and returns the new pointer. This pointer copies
@@ -116,21 +116,21 @@ static int	append_chunk(char **output, char *buffer)
  */
 char	*get_next_line(int fd)
 {
-	static char	buffer[BUFFER_SIZE + 1];
+	static char	buffer[OPEN_MAX][BUFFER_SIZE + 1];
 	char		*final_output;
 	int			bytesread;
 	int			newline_found;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd >= OPEN_MAX || BUFFER_SIZE <= 0)
 		return (NULL);
 	final_output = NULL;
 	bytesread = 1;
 	while (bytesread > 0)
 	{
-		bytesread = fill_buffer(fd, buffer);
+		bytesread = fill_buffer(fd, buffer[fd]);
 		if (bytesread <= 0)
 			break ;
-		newline_found = append_chunk(&final_output, buffer);
+		newline_found = append_chunk(&final_output, buffer[fd]);
 		if (newline_found)
 			break ;
 	}
