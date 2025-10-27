@@ -1,81 +1,49 @@
 ﻿cmake_minimum_required(VERSION 3.10)
 project(ft_printf C)
 
-# -------------------------------
-# C standard and compiler flags
-# -------------------------------
 set(CMAKE_C_STANDARD 11)
 add_compile_options(-Wall -Wextra -Werror -Wpedantic)
 
 # -------------------------------
-# ft_printf sources
+# Collect all sources recursively
 # -------------------------------
-file(GLOB_RECURSE FT_PRINTF_SRC
-        "${CMAKE_SOURCE_DIR}/ft_*.c"
-)
+file(GLOB_RECURSE ALL_C_SOURCES "${CMAKE_SOURCE_DIR}/*.c")
 
-# -------------------------------
-# libft sources
-# -------------------------------
-file(GLOB_RECURSE LIBFT_SRC
-        "${CMAKE_SOURCE_DIR}/libft/*.c"
-)
+# Build static library
+add_library(ftprintf STATIC ${ALL_C_SOURCES})
 
-# -------------------------------
-# Build static library ftprintf
-# -------------------------------
-add_library(ftprintf STATIC ${FT_PRINTF_SRC} ${LIBFT_SRC})
-
-# Include directories
+# Include all necessary directories
 target_include_directories(ftprintf PUBLIC
-        ${CMAKE_SOURCE_DIR}
-        ${CMAKE_SOURCE_DIR}/libft
+        ${CMAKE_SOURCE_DIR}        # root headers
+        ${CMAKE_SOURCE_DIR}/libft  # libft headers
+        ${CMAKE_SOURCE_DIR}/helpers # helpers headers
 )
 
 # -------------------------------
-# Norminette check (only ft_*.c and .h)
+# Norminette
 # -------------------------------
 find_program(NORMINETTE_EXECUTABLE norminette)
 if(NORMINETTE_EXECUTABLE)
-    file(GLOB_RECURSE FT_FILES
-            "${CMAKE_SOURCE_DIR}/ft_*.c"
-            "${CMAKE_SOURCE_DIR}/*.h"
+    file(GLOB_RECURSE ALL_HEADERS "${CMAKE_SOURCE_DIR}/*.h")
+    list(FILTER ALL_HEADERS EXCLUDE REGEX ".*/cmake-build-.*")
+    add_custom_target(norminette
+            COMMAND ${NORMINETTE_EXECUTABLE} -R CheckForbiddenSourceHeader -R CheckDefine ${ALL_C_SOURCES} ${ALL_HEADERS}
+            WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+            COMMENT "Running Norminette on all sources and headers..."
     )
-
-    # Exclude libft and build directories
-    list(FILTER FT_FILES EXCLUDE REGEX ".*/libft/.*")
-    list(FILTER FT_FILES EXCLUDE REGEX ".*/cmake-build-.*")
-
-    if(FT_FILES)
-        add_custom_command(TARGET ftprintf PRE_BUILD
-                COMMAND ${NORMINETTE_EXECUTABLE} -R CheckForbiddenSourceHeader -R CheckDefine ${FT_FILES}
-                WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-                COMMENT "Running Norminette on ft_*.c and headers..."
-        )
-    endif()
 endif()
 
 # -------------------------------
-# Executables for test_*.c files
+# Build an executable for each test_*.c main
 # -------------------------------
-file(GLOB TEST_FILES
-        "${CMAKE_SOURCE_DIR}/test_*.c"
-)
-
-foreach(TEST_FILE ${TEST_FILES})
-    get_filename_component(TEST_NAME ${TEST_FILE} NAME_WE)
-    add_executable(${TEST_NAME} ${TEST_FILE})
-    target_link_libraries(${TEST_NAME} PRIVATE ftprintf)
-    target_include_directories(${TEST_NAME} PRIVATE
+file(GLOB TEST_MAINS "${CMAKE_SOURCE_DIR}/test_*.c")
+foreach(MAIN_SRC ${TEST_MAINS})
+    get_filename_component(MAIN_NAME ${MAIN_SRC} NAME_WE)
+    add_executable(${MAIN_NAME} ${MAIN_SRC})
+    target_link_libraries(${MAIN_NAME} PRIVATE ftprintf)
+    target_include_directories(${MAIN_NAME} PRIVATE
             ${CMAKE_SOURCE_DIR}
             ${CMAKE_SOURCE_DIR}/libft
+            ${CMAKE_SOURCE_DIR}/helpers
     )
 endforeach()
-
-# -------------------------------
-# Optional: main demo executable
-# -------------------------------
-# Uncomment if you have a main.c or demo.c
-# add_executable(ft_demo main.c)
-# target_link_libraries(ft_demo PRIVATE ftprintf)
-# target_include_directories(ft_demo PRIVATE ${CMAKE_SOURCE_DIR} ${CMAKE_SOURCE_DIR}/libft)
