@@ -6,7 +6,7 @@
 /*   By: nluis-mo <nluis-mo@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 20:06:55 by nluis-mo          #+#    #+#             */
-/*   Updated: 2025/10/27 18:57:21 by nluis-mo         ###   ########.fr       */
+/*   Updated: 2025/10/27 19:44:11 by nluis-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,12 @@ int	ft_printf(const char *format, ...)
 		if (*format == '%' && *(format + 1))
 		{
 			counter += parse_format(++format, &f);
-			counter += dispatch_format(&f, &args);
+			dispatch_format(&f, &args);
 		}
 		else
-			counter += write(1, format++, 1);
+			counter += write(1, format, 1);
+		format += counter;
+		counter = 0;
 	}
 	va_end(args);
 	return (counter);

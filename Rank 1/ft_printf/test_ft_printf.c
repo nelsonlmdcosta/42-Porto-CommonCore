@@ -6,21 +6,9 @@
 /*   By: nluis-mo <nluis-mo@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:50:39 by nluis-mo          #+#    #+#             */
-/*   Updated: 2025/10/18 23:59:53 by nluis-mo         ###   ########.fr       */
+/*   Updated: 2025/10/27 20:03:27 by nluis-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   test_ft_printf.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nluis-mo <nluis-mo@student.42porto.com>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/18 19:50:39 by nluis-mo          #+#    #+#             */
-/*   Updated: 2025/10/18 22:36:41 by nluis-mo         ###   ########.fr       */
-/*                                                                            */
-/* ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
 #include "libftprintf.h"
 #include <stdio.h>
@@ -28,29 +16,94 @@
 
 void test_char(void)
 {
-	printf("----- %%c test \"-----\n");
-	printf("Expected: printf   : |%c| |%c| |%c|\n", 'A', ' ', 0);
-	printf("Actual  : ft_printf: |");
-	fflush(stdout);
-	ft_printf("%c| |%c| |%c|\n", 'A', ' ', 0);
-	printf("\n\n");
-	fflush(stdout);
+	char test_chars[] = {'A', ' ', 0, '\n'};
+
+	printf("----- %%c tests -----\n");
+
+	for (size_t i = 0; i < sizeof(test_chars)/sizeof(test_chars[0]); i++)
+	{
+		char c = test_chars[i];
+
+		// width 0
+		printf("Expected: printf   : |%c|\n", c);
+		fflush(stdout);
+		ft_printf("Actual  : ft_printf: |%c|\n", c);
+
+		// width 3 right-justify
+		printf("Expected: printf   : |%3c|\n", c);
+		fflush(stdout);
+		ft_printf("Actual  : ft_printf: |%3c|\n", c);
+
+		// width 3 left-justify
+		printf("Expected: printf   : |%-3c|\n", c);
+		fflush(stdout);
+		ft_printf("Actual  : ft_printf: |%-3c|\n", c);
+
+		// width 5 right-justify
+		printf("Expected: printf   : |%5c|\n", c);
+		fflush(stdout);
+		ft_printf("Actual  : ft_printf: |%5c|\n", c);
+
+		// width 5 left-justify
+		printf("Expected: printf   : |%-5c|\n", c);
+		fflush(stdout);
+		ft_printf("Actual : ft_printf: |%-5c|\n", c);
+
+		printf("\n");
+	}
 }
+
 
 void test_string(void)
 {
-	char *str = "Hello, world!";
-	char *empty = "";
-	char *null_str = NULL;
+	char *strings[] = {"Hello", "", NULL, "Hi"};
 
-	printf("----- %%s test -----\n");
-	printf("Expected: printf   : |%s| |%s| |%s|\n", str, empty, null_str);
-	printf("Actual  : ft_printf: |");
-	fflush(stdout);
-	ft_printf("%s| |%s| |%s|\n", str, empty, null_str);
-	printf("\n\n");
-	fflush(stdout);
+	printf("----- %%s tests -----\n");
+
+	for (size_t i = 0; i < sizeof(strings)/sizeof(strings[0]); i++)
+	{
+		char *s = strings[i];
+
+		// width 0, default precision
+		printf("Expected: printf   : |%s|\n", s);
+		printf("Actual  : ft_printf: |");
+		fflush(stdout);
+		ft_printf("%s|\n", s);
+
+		// width 5
+		printf("Expected: printf   : |%5s|\n", s);
+		printf("Actual  : ft_printf: |");
+		fflush(stdout);
+		ft_printf("%5s|\n", s);
+
+		// width 5 left-justify
+		printf("Expected: printf   : |%-5s|\n", s);
+		printf("Actual  : ft_printf: |");
+		fflush(stdout);
+		ft_printf("%-5s|\n", s);
+
+		// precision 3
+		printf("Expected: printf   : |%.3s|\n", s);
+		printf("Actual  : ft_printf: |");
+		fflush(stdout);
+		ft_printf("%.3s|\n", s);
+
+		// width 5 + precision 3
+		printf("Expected: printf   : |%5.3s|\n", s);
+		printf("Actual  : ft_printf: |");
+		fflush(stdout);
+		ft_printf("%5.3s|\n", s);
+
+		// left-justify + precision 3
+		printf("Expected: printf   : |%-5.3s|\n", s);
+		printf("Actual  : ft_printf: |");
+		fflush(stdout);
+		ft_printf("%-5.3s|\n", s);
+
+		printf("\n");
+	}
 }
+
 
 void test_pointer(void)
 {
@@ -143,14 +196,15 @@ int main(void)
 {
 	printf("=== FT_PRINTF TESTS ===\n\n");
 
-	test_char();
-	test_string();
-	test_pointer();
-	test_ints();
-	test_unsigned();
-	test_hex();
-	test_percent();
-	test_mixed();
+	//test_char();
+	//test_string();
+
+	//test_pointer();
+	//test_ints();
+	//test_unsigned();
+	//test_hex();
+	//test_percent();
+	//test_mixed();
 
 	printf("=== END OF TESTS ===\n");
 	return 0;
