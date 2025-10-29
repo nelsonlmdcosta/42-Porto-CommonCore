@@ -6,7 +6,7 @@
 /*   By: nluis-mo <nluis-mo@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 17:23:17 by nluis-mo          #+#    #+#             */
-/*   Updated: 2025/10/27 20:01:57 by nluis-mo         ###   ########.fr       */
+/*   Updated: 2025/10/28 15:48:09 by nluis-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@
  * 		justify by default, so the padding is at the start, if the - flag is
  * 		present then we left justify, aka we place the character THEN place the
  * 		padding
+ *
+ * 		Only alignment works on this type
  */
-int	print_char(t_format_info *format_info, char c)
+int	ft_print_char(t_format_info *format_info, char c)
 {
 	int	pad;
 	int	count;
@@ -42,8 +44,10 @@ int	print_char(t_format_info *format_info, char c)
  * 		justify by default, so the padding is at the start, if the - flag is
  * 		present then we left justify, aka we place the character THEN place the
  * 		padding
+ *
+ * 		Only alignment and precision work on this type
  */
-int	print_str(t_format_info *f, char *s)
+int	ft_print_str(t_format_info *f, char *s)
 {
 	int	len;
 	int	pad;

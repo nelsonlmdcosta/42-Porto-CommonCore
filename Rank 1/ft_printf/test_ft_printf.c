@@ -6,7 +6,7 @@
 /*   By: nluis-mo <nluis-mo@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:50:39 by nluis-mo          #+#    #+#             */
-/*   Updated: 2025/10/27 20:03:27 by nluis-mo         ###   ########.fr       */
+/*   Updated: 2025/10/28 09:12:04 by nluis-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void test_char(void)
 		printf("\n");
 	}
 }
-
 
 void test_string(void)
 {
@@ -104,35 +103,54 @@ void test_string(void)
 	}
 }
 
-
-void test_pointer(void)
+void test_percent(void)
 {
-	int x = 42;
-	void *ptr = &x;
-	void *null_ptr = NULL;
+	printf("----- %%%% tests -----\n");
 
-	printf("----- %%p test -----\n");
-	printf("Expected: printf   : |%p| |%p|\n", ptr, null_ptr);
-	printf("Actual  : ft_printf: |");
+	printf("Expected: printf   : |%%|\n");
 	fflush(stdout);
-	ft_printf("%p| |%p|\n", ptr, null_ptr);
-	printf("\n\n");
-	fflush(stdout);
+	ft_printf("Actual  : ft_printf: |%%|\n");
+
+	printf("\n");
 }
+
+
+
 
 void test_ints(void)
 {
 	int nums[] = {0, 42, -42, INT_MAX, INT_MIN};
 
-	printf("----- %%d/%%i test -----\n");
-	for (int i = 0; i < 5; i++)
+	printf("----- %%d/%%i tests -----\n");
+
+	for (size_t i = 0; i < sizeof(nums)/sizeof(nums[0]); i++)
 	{
-		printf("Expected: printf   : |%d| |%i|\n", nums[i], nums[i]);
-		printf("Actual  : ft_printf: |");
+		int n = nums[i];
+
+		// default
+		printf("Expected: printf   : |%d| |%i|\n", n, n);
 		fflush(stdout);
-		ft_printf("%d| |%i|\n", nums[i], nums[i]);
+		ft_printf("Actual  : ft_printf: |%d| |%i|\n", n, n);
+
+		// width 5 right-justify
+		printf("Expected: printf   : |%5d| |%5i|\n", n, n);
+		fflush(stdout);
+		ft_printf("Actual  : ft_printf: |%5d| |%5i|\n", n, n);
+
+		// width 5 left-justify
+		printf("Expected: printf   : |%-5d| |%-5i|\n", n, n);
+		fflush(stdout);
+		ft_printf("Actual  : ft_printf: |%-5d| |%-5i|\n", n, n);
+
+		// zero-padded width 5
+		printf("Expected: printf   : |%05d| |%05i|\n", n, n);
+		fflush(stdout);
+		ft_printf("Actual  : ft_printf: |%05d| |%05i|\n", n, n);
+
+		printf("\n");
 	}
-	printf("\n\n");
+
+	printf("\n");
 	fflush(stdout);
 }
 
@@ -140,15 +158,36 @@ void test_unsigned(void)
 {
 	unsigned int u_nums[] = {0, 42, UINT_MAX};
 
-	printf("----- %%u test -----\n");
-	for (int i = 0; i < 3; i++)
+	printf("----- %%u tests -----\n");
+
+	for (size_t i = 0; i < sizeof(u_nums)/sizeof(u_nums[0]); i++)
 	{
-		printf("Expected: printf   : |%u|\n", u_nums[i]);
-		printf("Actual  : ft_printf: |");
+		unsigned int n = u_nums[i];
+
+		// default
+		printf("Expected: printf   : |%u|\n", n);
 		fflush(stdout);
-		ft_printf("%u|\n", u_nums[i]);
+		ft_printf("Actual  : ft_printf: |%u|\n", n);
+
+		// width 5 right-justify
+		printf("Expected: printf   : |%5u|\n", n);
+		fflush(stdout);
+		ft_printf("Actual  : ft_printf: |%5u|\n", n);
+
+		// width 5 left-justify
+		printf("Expected: printf   : |%-5u|\n", n);
+		fflush(stdout);
+		ft_printf("Actual  : ft_printf: |%-5u|\n", n);
+
+		// zero-padded width 5
+		printf("Expected: printf   : |%05u|\n", n);
+		fflush(stdout);
+		ft_printf("Actual  : ft_printf: |%05u|\n", n);
+
+		printf("\n");
 	}
-	printf("\n\n");
+
+	printf("\n");
 	fflush(stdout);
 }
 
@@ -168,16 +207,22 @@ void test_hex(void)
 	fflush(stdout);
 }
 
-void test_percent(void)
+void test_pointer(void)
 {
-	printf("----- %% test -----\n");
-	printf("Expected: printf   : %% %% %%\n");
-	printf("Actual  : ft_printf: ");
+	int x = 42;
+	void *ptr = &x;
+	void *null_ptr = NULL;
+
+	printf("----- %%p test -----\n");
+	printf("Expected: printf   : |%p| |%p|\n", ptr, null_ptr);
+	printf("Actual  : ft_printf: |");
 	fflush(stdout);
-	ft_printf("%% %% %%\n");
+	ft_printf("%p| |%p|\n", ptr, null_ptr);
 	printf("\n\n");
 	fflush(stdout);
 }
+
+
 
 void test_mixed(void)
 {
@@ -198,12 +243,14 @@ int main(void)
 
 	//test_char();
 	//test_string();
-
-	//test_pointer();
-	//test_ints();
-	//test_unsigned();
-	//test_hex();
 	//test_percent();
+
+	test_ints();
+	//test_unsigned();
+
+	//test_hex();
+	//test_pointer();
+
 	//test_mixed();
 
 	printf("=== END OF TESTS ===\n");

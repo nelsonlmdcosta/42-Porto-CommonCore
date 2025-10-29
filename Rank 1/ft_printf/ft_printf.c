@@ -24,9 +24,9 @@
 int	dispatch_format(t_format_info *f, va_list *args)
 {
 	if (f->specifier == 'c')
-		return print_char(f, va_arg(*args, int));
+		return ft_print_char(f, va_arg(*args, int));
 	if (f->specifier == 's')
-		return print_str(f, va_arg(*args, char *));
+		return ft_print_str(f, va_arg(*args, char *));
 	if (f->specifier == 'p')
 		return print_ptr(f, va_arg(*args, void *));
 	if (f->specifier == 'd' || f->specifier == 'i')
@@ -58,7 +58,7 @@ int	ft_printf(const char *format, ...)
 	{
 		if (*format == '%' && *(format + 1))
 		{
-			counter += parse_format(++format, &f);
+			counter += ft_parse_format(++format, &f);
 			dispatch_format(&f, &args);
 		}
 		else

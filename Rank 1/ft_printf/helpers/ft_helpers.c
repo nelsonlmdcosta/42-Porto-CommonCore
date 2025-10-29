@@ -6,7 +6,7 @@
 /*   By: nluis-mo <nluis-mo@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 17:28:07 by nluis-mo          #+#    #+#             */
-/*   Updated: 2025/10/27 18:50:50 by nluis-mo         ###   ########.fr       */
+/*   Updated: 2025/10/28 07:54:10 by nluis-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_putnchar(char c, int n)
 	return count;
 }
 
-int	ft_numlen(unsigned long n, int base)
+int	ft_numberlength(ulong64 n, int base)
 {
 	int len = 1;
 	while (n >= (unsigned)base)

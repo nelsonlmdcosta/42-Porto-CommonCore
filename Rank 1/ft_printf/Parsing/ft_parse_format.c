@@ -6,7 +6,7 @@
 /*   By: nluis-mo <nluis-mo@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 17:27:06 by nluis-mo          #+#    #+#             */
-/*   Updated: 2025/10/27 19:04:04 by nluis-mo         ###   ########.fr       */
+/*   Updated: 2025/10/28 07:21:28 by nluis-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 /*
  *	Checks To See If Any Of The Supported Flags Are Found
+ *
+ *	TODO: Make This Into The If Statement Below And Return The Actual Flag
+ *		Value? Should Simplify THe Code
  */
-static int	isflag(char character)
+static int	ft_isflag(char character)
 {
 	return (character == '-' || character == '0' || character == '#'
 		|| character == ' ' || character == '+');
@@ -24,12 +27,12 @@ static int	isflag(char character)
 /*
  * 	Parses Out The Simples Flags Into The Structure
  */
-static int	parse_format_flags(const char *format, t_format_info *fmtinfo)
+static int	ft_parse_format_flags(const char *format, t_format_info *fmtinfo)
 {
 	int count;
 
 	count = 0;
-	while (isflag(format[count]))
+	while (ft_isflag(format[count]))
 	{
 		if (format[count] == '-')
 			fmtinfo->flags |= FLAG_MINUS;
@@ -49,7 +52,7 @@ static int	parse_format_flags(const char *format, t_format_info *fmtinfo)
 /*
  * 	Parses The Precision Format Flag If It Exists
  */
-static int	parse_format_precision(const char *format, t_format_info *fmtinfo)
+static int	ft_parse_format_precision(const char *format, t_format_info *fmtinfo)
 {
 	int	count;
 
@@ -87,16 +90,16 @@ static int	parse_format_precision(const char *format, t_format_info *fmtinfo)
  *
  * 	https://cplusplus.com/reference/cstdio/printf
  */
-int	parse_format(const char *format, t_format_info *fmtinfo)
+int	ft_parse_format(const char *format, t_format_info *fmtinfo)
 {
 	int	count;
 
 	count = 0;
 	ft_memset(fmtinfo, 0, sizeof(*fmtinfo));
-	count += parse_format_flags(format+count, fmtinfo);
+	count += ft_parse_format_flags(format + count, fmtinfo);
 	while (ft_isdigit((unsigned char)format[count]))
 		fmtinfo->width = fmtinfo->width * 10 + (format[count++] - '0');
-	count += parse_format_precision(format+count, fmtinfo);
+	count += ft_parse_format_precision(format + count, fmtinfo);
 	if (format[count])
 		fmtinfo->specifier = format[count++];
 	return (count);
