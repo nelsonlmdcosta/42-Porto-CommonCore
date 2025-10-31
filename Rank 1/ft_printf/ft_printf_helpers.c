@@ -1,46 +1,64 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_helpers.c                                :+:      :+:    :+:   */
+/*   helpers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nluis-mo <nluis-mo@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/18 23:39:54 by nluis-mo          #+#    #+#             */
-/*   Updated: 2025/10/18 23:55:59 by nluis-mo         ###   ########.fr       */
+/*   Created: 2025/10/27 17:28:07 by nluis-mo          #+#    #+#             */
+/*   Updated: 2025/10/31 16:43:17 by nluis-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-char *to_hex(unsigned long num, int uppercase)
+#include "libftprintf.h"
+
+int	ft_putnchar(char c, int n)
 {
-	char *hex_chars = uppercase ? "0123456789ABCDEF" : "0123456789abcdef";
-	char buffer[17]; // 16 digits max for 64-bit + null terminator
-	buffer[16] = '\0';
+	int	count;
 
-	int i = 15;
-	if (num == 0)
-	{
-		buffer[i--] = '0';
-	}
-	while (num != 0)
-	{
-		buffer[i--] = hex_chars[num % 16];
-		num /= 16;
-	}
+	count = 0;
+	while (n-- > 0)
+		count += write(1, &c, 1);
+	return (count);
+}
 
-	// Allocate and copy result
-	char *result = malloc(17 - i);
-	if (!result)
-		return (NULL);
-
-	int j = 0;
-	i++; // move to first filled digit
-	while (buffer[i])
-		result[j++] = buffer[i++];
-	result[j] = '\0';
-
-	return result;
-}*/
-void	temp(void)
+int	ft_numberlength(t_ulong64 n, t_ulong64 base)
 {
+	int	len;
+
+	len = 1;
+	while (n >= (t_ulong64)base)
+	{
+		n /= base;
+		++len;
+	}
+	return (len);
+}
+
+void	*ft_memset(void *s, int c, size_t n)
+{
+	unsigned char	*ptr;
+
+	ptr = s;
+	while (n--)
+		*ptr++ = c;
+	return (s);
+}
+
+int	ft_isdigit(int c)
+{
+	return (c >= '0' && c <= '9');
+}
+
+void	ft_puthex_rec(t_ulong64 n, int upper)
+{
+	char	*base;
+
+	if (upper)
+		base = "0123456789ABCDEF";
+	else
+		base = "0123456789abcdef";
+	if (n >= 16)
+		ft_puthex_rec(n / 16, upper);
+	write(1, &base[n % 16], 1);
 }

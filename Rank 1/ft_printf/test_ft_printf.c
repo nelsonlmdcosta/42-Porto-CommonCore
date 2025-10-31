@@ -6,7 +6,7 @@
 /*   By: nluis-mo <nluis-mo@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:50:39 by nluis-mo          #+#    #+#             */
-/*   Updated: 2025/10/28 09:12:04 by nluis-mo         ###   ########.fr       */
+/*   Updated: 2025/10/31 16:21:50 by nluis-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,9 +113,6 @@ void test_percent(void)
 
 	printf("\n");
 }
-
-
-
 
 void test_ints(void)
 {
@@ -245,11 +242,11 @@ int main(void)
 	//test_string();
 	//test_percent();
 
-	test_ints();
+	//test_ints();
 	//test_unsigned();
 
 	//test_hex();
-	//test_pointer();
+	test_pointer();
 
 	//test_mixed();
 

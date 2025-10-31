@@ -6,14 +6,15 @@
 /*   By: nluis-mo <nluis-mo@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 22:12:38 by nluis-mo          #+#    #+#             */
-/*   Updated: 2025/10/28 15:48:34 by nluis-mo         ###   ########.fr       */
+/*   Updated: 2025/10/31 16:46:34 by nluis-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFTPRINTF_H
 # define LIBFTPRINTF_H
 
-# include "libft.h"
+# include <stddef.h>
+# include <unistd.h>
 # include <stdarg.h>
 
 # define FLAG_MINUS  (1 << 0)
@@ -34,24 +35,35 @@
  * https://blog.kowalczyk.info/article/j/
  * guide-to-predefined-macros-in-c-compilers-gcc-clang-msvc-etc..html
  */
-#ifndef T_LONG_H
-# define T_LONG_H
-# if defined(_WIN64) || defined(__x86_64__) || defined(__ppc64__)
-typedef long long long64;
-# else
-typedef long long64;
-# endif
-#endif
+# ifndef T_LONG_H
+#  define T_LONG_H
+#  if defined(_WIN64) || defined(__x86_64__) || defined(__ppc64__)
 
-#ifndef T_ULONG_H
-# define T_ULONG_H
-# if defined(_WIN64) || defined(__x86_64__) || defined(__ppc64__)
-typedef unsigned long long ulong64;
-# else
-typedef unsigned long ulong64;
-# endif
-#endif
+typedef long long			t_long64;
+#  else
 
+typedef long				t_long64;
+#  endif
+# endif
+
+# ifndef T_ULONG_H
+#  define T_ULONG_H
+#  if defined(_WIN64) || defined(__x86_64__) || defined(__ppc64__)
+
+typedef unsigned long long	t_ulong64;
+#  else
+
+typedef unsigned long		t_ulong64;
+#  endif
+# endif
+
+/*
+ * 	First set of variables are for the formatting section
+ * 		to fill out, the second set of variables with tiny
+ * 		names, is for when actually printing to reduce the
+ * 		total number of parameters passed through hate it
+ * 		but gotz to follow the norminette rulez bruv
+ */
 typedef struct s_format_info
 {
 	unsigned int	flags;
@@ -59,22 +71,29 @@ typedef struct s_format_info
 	int				precision;
 	int				has_precision;
 	char			specifier;
+
+	int				wdth;
+	int				prec;
+	int				nlen;
+	int				prefix;
 }	t_format_info;
 
 int		ft_printf(const char *fmt, ...);
 int		ft_parse_format(const char *format, t_format_info *fmtinfo);
 int		dispatch_format(t_format_info *f, va_list *args);
 
-int		ft_putchar(char c);
-int		ft_putstr(char *s);
 int		ft_putnchar(char c, int n);
-int		ft_numberlength(ulong64 n, int base);
+int		ft_numberlength(t_ulong64 n, t_ulong64 base);
 
-int		ft_print_char(t_format_info *format_info, char c);
+void	*ft_memset(void *s, int c, size_t n);
+int		ft_isdigit(int c);
+void	ft_puthex_rec(t_ulong64 n, int upper);
+
+int		ft_print_char(t_format_info *f, char c);
 int		ft_print_str(t_format_info *f, char *s);
-int		print_number(t_format_info *f, int n);
-int		print_unsigned(t_format_info *f, unsigned int n);
-int		print_hex(t_format_info *f, unsigned int n, int upper);
-int		print_ptr(t_format_info *f, void *ptr);
+int		ft_print_number(t_format_info *f, int n);
+int		ft_print_unsigned(t_format_info *f, unsigned int n);
+int		ft_print_hex(t_format_info *f, unsigned int n, int upper);
+int		ft_print_ptr(t_format_info *f, void *ptr);
 
 #endif

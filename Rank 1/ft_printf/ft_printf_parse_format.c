@@ -1,4 +1,4 @@
-﻿/* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   parse_format.c                                     :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: nluis-mo <nluis-mo@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 17:27:06 by nluis-mo          #+#    #+#             */
-/*   Updated: 2025/10/28 07:21:28 by nluis-mo         ###   ########.fr       */
+/*   Updated: 2025/10/30 17:06:40 by nluis-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	ft_isflag(char character)
  */
 static int	ft_parse_format_flags(const char *format, t_format_info *fmtinfo)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	while (ft_isflag(format[count]))
@@ -52,17 +52,17 @@ static int	ft_parse_format_flags(const char *format, t_format_info *fmtinfo)
 /*
  * 	Parses The Precision Format Flag If It Exists
  */
-static int	ft_parse_format_precision(const char *format, t_format_info *fmtinfo)
+static int	ft_parse_format_precision(const char *format, t_format_info *fi)
 {
 	int	count;
 
 	count = 0;
 	if (format[count] == '.')
 	{
-		fmtinfo->has_precision = 1;
+		fi->has_precision = 1;
 		count++;
 		while (ft_isdigit((unsigned char)format[count]))
-			fmtinfo->precision = fmtinfo->precision * 10 + (format[count++] - '0');
+			fi->precision = fi->precision * 10 + (format[count++] - '0');
 	}
 	return (count);
 }

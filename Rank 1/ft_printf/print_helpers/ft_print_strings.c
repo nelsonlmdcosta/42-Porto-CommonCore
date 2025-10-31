@@ -6,7 +6,7 @@
 /*   By: nluis-mo <nluis-mo@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 17:23:17 by nluis-mo          #+#    #+#             */
-/*   Updated: 2025/10/28 15:48:09 by nluis-mo         ###   ########.fr       */
+/*   Updated: 2025/10/31 15:28:20 by nluis-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  * 		present then we left justify, aka we place the character THEN place the
  * 		padding
  *
- * 		Only alignment works on this type
+ * 		Only alignment (-) works on this type
  */
 int	ft_print_char(t_format_info *format_info, char c)
 {
@@ -32,7 +32,7 @@ int	ft_print_char(t_format_info *format_info, char c)
 	count = 0;
 	if (!(format_info->flags & FLAG_MINUS))
 		count += ft_putnchar(' ', pad);
-	count += ft_putchar(c);
+	count += ft_putnchar(c, 1);
 	if (format_info->flags & FLAG_MINUS)
 		count += ft_putnchar(' ', pad);
 	return (count);
@@ -45,7 +45,7 @@ int	ft_print_char(t_format_info *format_info, char c)
  * 		present then we left justify, aka we place the character THEN place the
  * 		padding
  *
- * 		Only alignment and precision work on this type
+ * 		Only alignment (-) and precision (.) work on this type
  */
 int	ft_print_str(t_format_info *f, char *s)
 {
