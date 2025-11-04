@@ -6,7 +6,7 @@
 /*   By: nluis-mo <nluis-mo@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:50:39 by nluis-mo          #+#    #+#             */
-/*   Updated: 2025/10/31 16:21:50 by nluis-mo         ###   ########.fr       */
+/*   Updated: 2025/11/01 10:51:33 by nluis-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void test_char(void)
 		// width 5 left-justify
 		printf("Expected: printf   : |%-5c|\n", c);
 		fflush(stdout);
-		ft_printf("Actual : ft_printf: |%-5c|\n", c);
+		ft_printf("Actual : ft_printf : |%-5c|\n", c);
 
 		printf("\n");
 	}
@@ -219,8 +219,6 @@ void test_pointer(void)
 	fflush(stdout);
 }
 
-
-
 void test_mixed(void)
 {
 	int x = 42;
@@ -238,17 +236,17 @@ int main(void)
 {
 	printf("=== FT_PRINTF TESTS ===\n\n");
 
-	//test_char();
-	//test_string();
-	//test_percent();
+	test_char();
+	test_string();
+	test_percent();
 
-	//test_ints();
-	//test_unsigned();
+	test_ints();
+	test_unsigned();
 
-	//test_hex();
+	test_hex();
 	test_pointer();
 
-	//test_mixed();
+	test_mixed();
 
 	printf("=== END OF TESTS ===\n");
 	return 0;

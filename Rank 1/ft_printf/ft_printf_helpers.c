@@ -6,7 +6,7 @@
 /*   By: nluis-mo <nluis-mo@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 17:28:07 by nluis-mo          #+#    #+#             */
-/*   Updated: 2025/10/31 16:43:17 by nluis-mo         ###   ########.fr       */
+/*   Updated: 2025/11/01 10:36:22 by nluis-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,9 @@ void	ft_puthex_rec(t_ulong64 n, int upper)
 {
 	char	*base;
 
+	base = "0123456789abcdef";
 	if (upper)
 		base = "0123456789ABCDEF";
-	else
-		base = "0123456789abcdef";
 	if (n >= 16)
 		ft_puthex_rec(n / 16, upper);
 	write(1, &base[n % 16], 1);

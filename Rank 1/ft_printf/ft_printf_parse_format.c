@@ -6,7 +6,7 @@
 /*   By: nluis-mo <nluis-mo@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 17:27:06 by nluis-mo          #+#    #+#             */
-/*   Updated: 2025/10/30 17:06:40 by nluis-mo         ###   ########.fr       */
+/*   Updated: 2025/11/01 10:35:50 by nluis-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 /*
  *	Checks To See If Any Of The Supported Flags Are Found
- *
- *	TODO: Make This Into The If Statement Below And Return The Actual Flag
- *		Value? Should Simplify THe Code
  */
 static int	ft_isflag(char character)
 {

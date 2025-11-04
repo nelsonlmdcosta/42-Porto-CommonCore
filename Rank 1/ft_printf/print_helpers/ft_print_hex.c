@@ -6,7 +6,7 @@
 /*   By: nluis-mo <nluis-mo@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 17:24:29 by nluis-mo          #+#    #+#             */
-/*   Updated: 2025/10/31 16:19:14 by nluis-mo         ###   ########.fr       */
+/*   Updated: 2025/10/31 16:57:13 by nluis-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,9 @@ static int	print_hex_body(t_format_info *f, t_ulong64 num, int upper)
 	return (count);
 }
 
+/*
+ * 	Function to print the actual hex value,
+ */
 int	ft_print_hex(t_format_info *f, unsigned int n, int upper)
 {
 	t_ulong64	num;

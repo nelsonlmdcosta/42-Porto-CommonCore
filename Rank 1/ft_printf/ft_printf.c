@@ -6,7 +6,7 @@
 /*   By: nluis-mo <nluis-mo@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 20:06:55 by nluis-mo          #+#    #+#             */
-/*   Updated: 2025/10/31 16:50:40 by nluis-mo         ###   ########.fr       */
+/*   Updated: 2025/11/04 21:31:20 by nluis-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ int	ft_printf(const char *format, ...)
 	{
 		if (*format == '%' && *(format + 1))
 		{
-			ft_memset(&f, 0, sizeof(f));
 			skip = ft_parse_format(++format, &f);
 			format += skip;
 			total_printed += dispatch_format(&f, &args);

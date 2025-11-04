@@ -6,7 +6,7 @@
 /*   By: nluis-mo <nluis-mo@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 17:23:53 by nluis-mo          #+#    #+#             */
-/*   Updated: 2025/10/31 15:40:53 by nluis-mo         ###   ########.fr       */
+/*   Updated: 2025/11/01 10:46:10 by nluis-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ static int	prtwflg_unsigned(t_format_info *f, t_ulong64 n)
 		count += f->nlen;
 	}
 	if (f->flags & FLAG_MINUS)
-		count += ft_putnchar(' ', f->width);
+		count += ft_putnchar(' ', f->wdth);
 	return (count);
 }
 
