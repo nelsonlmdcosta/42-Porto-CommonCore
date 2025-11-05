@@ -6,7 +6,7 @@
 /*   By: nluis-mo <nluis-mo@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 17:23:17 by nluis-mo          #+#    #+#             */
-/*   Updated: 2025/10/31 15:28:20 by nluis-mo         ###   ########.fr       */
+/*   Updated: 2025/11/05 20:39:49 by nluis-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ int	ft_print_str(t_format_info *f, char *s)
 	int	count;
 
 	len = 0;
-	if (!s)
+	if (!s && !f->has_precision)
 		s = "(null)";
-	while (s[len] && (!f->has_precision || len < f->precision))
+	while (s && s[len] && (!f->has_precision || len < f->precision))
 		++len;
 	pad = 0;
 	if (f->width > len)

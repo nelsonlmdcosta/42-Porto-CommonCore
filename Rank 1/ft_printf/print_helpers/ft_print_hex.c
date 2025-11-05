@@ -6,7 +6,7 @@
 /*   By: nluis-mo <nluis-mo@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 17:24:29 by nluis-mo          #+#    #+#             */
-/*   Updated: 2025/10/31 16:57:13 by nluis-mo         ###   ########.fr       */
+/*   Updated: 2025/11/05 20:17:52 by nluis-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,12 @@ int	ft_print_ptr(t_format_info *f, void *ptr)
 	prepare_ptr_format(f, num);
 	if (!(f->flags & FLAG_MINUS))
 		count += ft_putnchar(' ', f->wdth);
-	count += write(1, "0x", 2);
+	if (num == 0)
+    {
+        write(1, "(nil)", 5);
+        return 5;
+    }
+    count += write(1, "0x", 2);
 	count += ft_putnchar('0', f->prec);
 	if (f->nlen)
 	{
