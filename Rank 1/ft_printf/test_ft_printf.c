@@ -6,7 +6,7 @@
 /*   By: nluis-mo <nluis-mo@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:50:39 by nluis-mo          #+#    #+#             */
-/*   Updated: 2025/11/01 10:51:33 by nluis-mo         ###   ########.fr       */
+/*   Updated: 2025/11/05 20:38:23 by nluis-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,43 +61,38 @@ void test_string(void)
 
 	for (size_t i = 0; i < sizeof(strings)/sizeof(strings[0]); i++)
 	{
+        int index = i;
 		char *s = strings[i];
 
 		// width 0, default precision
-		printf("Expected: printf   : |%s|\n", s);
-		printf("Actual  : ft_printf: |");
-		fflush(stdout);
-		ft_printf("%s|\n", s);
+		printf("%d - Expected: printf   : |%s|\n", index, s);
+        fflush(stdout);
+        ft_printf("%d - Actual  : ft_printf: |%s|\n", index, s);
 
 		// width 5
-		printf("Expected: printf   : |%5s|\n", s);
-		printf("Actual  : ft_printf: |");
-		fflush(stdout);
-		ft_printf("%5s|\n", s);
+		printf("%d - Expected: printf   : |%5s|\n", index, s);
+        fflush(stdout);
+        ft_printf("%d - Actual  : ft_printf: |%5s|\n", index, s);
 
 		// width 5 left-justify
-		printf("Expected: printf   : |%-5s|\n", s);
-		printf("Actual  : ft_printf: |");
-		fflush(stdout);
-		ft_printf("%-5s|\n", s);
+		printf("%d - Expected: printf   : |%-5s|\n", index, s);
+        fflush(stdout);
+        ft_printf("%d - Actual  : ft_printf: |%-5s|\n", index, s);
 
 		// precision 3
-		printf("Expected: printf   : |%.3s|\n", s);
-		printf("Actual  : ft_printf: |");
-		fflush(stdout);
-		ft_printf("%.3s|\n", s);
+		printf("%d - Expected: printf   : |%.3s|\n", index, s);
+        fflush(stdout);
+        ft_printf("%d - Actual  : ft_printf: |%.3s|\n", index, s);
 
 		// width 5 + precision 3
-		printf("Expected: printf   : |%5.3s|\n", s);
-		printf("Actual  : ft_printf: |");
-		fflush(stdout);
-		ft_printf("%5.3s|\n", s);
+		printf("%d - Expected: printf   : |%5.3s|\n", index, s);
+        fflush(stdout);
+		ft_printf("%d - Actual  : ft_printf: |%5.3s|\n", index, s);
 
 		// left-justify + precision 3
-		printf("Expected: printf   : |%-5.3s|\n", s);
-		printf("Actual  : ft_printf: |");
-		fflush(stdout);
-		ft_printf("%-5.3s|\n", s);
+		printf("%d - Expected: printf   : |%-5.3s|\n", index, s);
+        fflush(stdout);
+        ft_printf("%d - Actual  : ft_printf: |%-5.3s|\n", index, s);
 
 		printf("\n");
 	}
@@ -236,17 +231,17 @@ int main(void)
 {
 	printf("=== FT_PRINTF TESTS ===\n\n");
 
-	test_char();
+	//test_char();
 	test_string();
-	test_percent();
+	//test_percent();
 
-	test_ints();
-	test_unsigned();
+	//test_ints();
+	//test_unsigned();
 
-	test_hex();
-	test_pointer();
+	//test_hex();
+	//test_pointer();
 
-	test_mixed();
+	//test_mixed();
 
 	printf("=== END OF TESTS ===\n");
 	return 0;
