@@ -24,7 +24,7 @@ all: $(NAME)
 
 # Current: build without libft
 $(NAME): $(OBJ)
-	@$(AR) rcs $(NAME) $(OBJ)
+	@$(AR) $(NAME) $(OBJ)
 	@echo "$(NAME) built successfully"
 
 # Compile libft first
@@ -33,14 +33,15 @@ $(NAME): $(OBJ)
 
 # Compile .c -> .o
 %.o: %.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@$(RM) $(OBJ)
+	$(RM) $(OBJ)
+	@echo "Files Cleared"
 	# @$(MAKE) -C $(LIBFT_DIR) clean
 
 fclean: clean
-	@$(RM) $(NAME)
+	$(RM) $(NAME)
 	# @$(MAKE) -C $(LIBFT_DIR) fclean
 
 re: fclean all
